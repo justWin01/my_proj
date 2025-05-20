@@ -24,18 +24,36 @@ def create_user():
 
     return jsonify({'message': 'User created', 'user_id': new_user.user_id}), 201
 
+
+@app.route('/api/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.get_or_404(user_id)
+    user_data = {
+        'user_id': user.user_id,
+        'username': user.username,
+        'email': user.email,
+        'full_name': user.full_name,
+        'join_date': user.join_date.strftime('%Y-%m-%d'),
+        'follower_count': user.follower_count
+    }
+    return jsonify(user_data), 200
+
 @app.route('/api/users', methods=['GET'])
-def get_users():
+def get_all_users():
     users = User.query.all()
-    return jsonify([
-        {
-            'user_id': u.user_id,
-            'username': u.username,
-            'email': u.email,
-            'full_name': u.full_name,
-            'join_date': u.join_date.isoformat()
-        } for u in users
-    ])
+    users_list = []
+
+    for user in users:
+        users_list.append({
+            'user_id': user.user_id,
+            'username': user.username,
+            'email': user.email,
+            'full_name': user.full_name,
+            'join_date': user.join_date.strftime('%Y-%m-%d') if user.join_date else None,
+            'follower_count': user.follower_count
+        })
+
+    return jsonify(users_list), 200
 
 if __name__ == '__main__':
     with app.app_context():
