@@ -1,0 +1,36 @@
+{
+    "USER": {
+      "int": "user_id = PK",
+      "String1": "username",
+      "String2": "email",
+      "String3": "password",
+      "String4": "full_name",
+      "date": "join_date",
+      "int2": "follower_count"
+    },
+    "POST": {
+      "int": "post_id = PK",
+      "String": "content",
+      "int1": "comment_count",
+      "date1": "post_date",
+      "int2": "like_date",
+      "int3": "user_id = FK"
+    },
+    "COMMENT": {
+      "int": "comment_id = PK",
+      "String": "content",
+      "date": "comment_date",
+      "int1": "post_date = FK"
+    },
+    "LIKE": {
+      "int": "like_id = PK",
+      "date": "like_date",
+      "int1": "user_id = FK",
+      "int2": "post_id = FK"
+    },
+    "FOLLOWER": {
+      "date": "date_followed",
+      "int": "user_id = FK"
+    }
+  }
+  

@@ -1,6 +1,7 @@
 from . import db
 from datetime import datetime
 
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -17,3 +18,4 @@ class User(db.Model):
     likes = db.relationship('Like', backref='user', lazy=True)
     followers = db.relationship('Follower', backref='followed', lazy=True, foreign_keys='Follower.user_id')
     following = db.relationship('Follower', backref='follower', lazy=True, foreign_keys='Follower.follower_id')
+
