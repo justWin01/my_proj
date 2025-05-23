@@ -1,7 +1,8 @@
 from flask import Flask
 from Models import db
-from user.routes_post import post_user_routes
-from user.routes_get import get_user_routes
+from Route.routes_post import post_user_routes
+from Route.routes_get import get_user_routes
+#from Route.routes_update import post_user_routes
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/FLASK'
