@@ -8,6 +8,7 @@ from Route.post import post_routes
 
 
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/FLASK'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
