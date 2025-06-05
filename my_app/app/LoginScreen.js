@@ -1,37 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, TextInput, Button, Alert } from 'react-native';
+import axios from 'axios';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://<YOUR_LOCAL_IP>:5000/user/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+      const response = await axios.post('http:// 192.168.100.8:5000/user/login', {
+        email,
+        password,
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        Alert.alert('Success', 'Login successful');
-        // Navigate to next screen or store token
-      } else {
-        Alert.alert('Error', data.error || 'Login failed');
+      if (response.status === 200) {
+        Alert.alert('Login Successful');
+        // Navigate to the main screen
+        navigation.navigate('Home');
       }
     } catch (error) {
-      Alert.alert('Error', 'Something went wrong');
+      Alert.alert('Login Failed', error.response?.data?.message || 'Unknown error');
     }
   };
 
   return (
     <View style={{ padding: 20 }}>
-      <Text>Email</Text>
-      <TextInput value={email} onChangeText={setEmail} style={{ borderWidth: 1, marginBottom: 10 }} />
-      <Text>Password</Text>
-      <TextInput value={password} onChangeText={setPassword} secureTextEntry style={{ borderWidth: 1, marginBottom: 10 }} />
+      <TextInput
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+        keyboardType="email-address"
+        style={{ marginBottom: 10, borderBottomWidth: 1 }}
+      />
+      <TextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={{ marginBottom: 20, borderBottomWidth: 1 }}
+      />
       <Button title="Login" onPress={handleLogin} />
     </View>
   );

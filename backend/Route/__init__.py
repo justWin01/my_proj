@@ -1,2 +1,1 @@
-
-from .routes_user import routes_user
+from .routes_user import user_routes
