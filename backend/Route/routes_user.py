@@ -4,6 +4,9 @@ from datetime import datetime
 
 routes_user = Blueprint('routes_user', __name__)
 
+def ascii_encode_password(pw: str) -> str:
+    return pw.encode('ascii').hex()
+
 # ----------------------
 # POST Route - Create User
 # ----------------------
@@ -20,14 +23,12 @@ def create_user():
     if missing_fields:
         return jsonify({'error': f'Missing fields: {", ".join(missing_fields)}'}), 400
 
-    # Optional: add checks for existing user/email here
-
     new_user = User(
         username=data['username'],
         email=data['email'],
-        password=data['password'],
+        password=ascii_encode_password(data['password']),  # encode here
         full_name=data['full_name'],
-        join_date=datetime.utcnow(),  # or datetime.now()
+        join_date=datetime.utcnow(),
         follower_count=0
     )
 
@@ -88,7 +89,7 @@ def update_user(user_id):
     if 'username' in data:
         user.username = data['username']
     if 'password' in data:
-        user.password = data['password']
+        user.password = ascii_encode_password(data['password'])  # encode here
 
     db.session.commit()
 
