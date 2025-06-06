@@ -19,3 +19,12 @@ class User(db.Model):
     followers = db.relationship('Follower', backref='followed', lazy=True, foreign_keys='Follower.user_id')
     following = db.relationship('Follower', backref='follower', lazy=True, foreign_keys='Follower.follower_id')
 
+def serialize(self):
+    return {
+        "user_id": self.user_id,
+        "username": self.username,
+        "email": self.email,
+        "full_name": self.full_name,
+        "join_date": self.join_date.isoformat() if self.join_date else None,
+        "follower_count": self.follower_count
+    }
