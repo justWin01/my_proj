@@ -1,13 +1,14 @@
 import { Image } from 'expo-image';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ScrollView, Alert } from 'react-native';
+import { useRouter } from 'expo-router'; // ✅ Import navigation
+import { initialUser } from '@/utils/userData';
 
-// 👇 Replacing ParallaxScrollView
+
 function ParallaxScrollView({ children }: { children: React.ReactNode }) {
   return <ScrollView style={styles.scrollView}>{children}</ScrollView>;
 }
 
-// 👇 Replacing ThemedText
 function ThemedText({ children, type = 'default' }: { children: React.ReactNode; type?: 'title' | 'default' }) {
   return (
     <Text style={type === 'title' ? styles.titleText : styles.defaultText}>
@@ -16,15 +17,24 @@ function ThemedText({ children, type = 'default' }: { children: React.ReactNode;
   );
 }
 
-// 👇 Replacing ThemedView
 function ThemedView({ children, style }: { children: React.ReactNode; style?: any }) {
   return <View style={style}>{children}</View>;
 }
 
-// 👇 HomeScreen component
+
 export default function HomeScreen() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter(); // ✅ Hook for navigation
+
   const handleLogin = () => {
-    Alert.alert('Login pressed');
+    if (email === initialUser.email && password === initialUser.password) {
+      Alert.alert('Login Successful', 'Welcome!');
+      router.push('/DashboardScreen'); // ✅ for Expo Router
+ // ✅ Navigate to Dashboard
+    } else {
+      Alert.alert('Login Failed', 'Incorrect email or password.');
+    }
   };
 
   return (
@@ -39,38 +49,44 @@ export default function HomeScreen() {
       <ThemedView style={styles.loginContainer}>
         <ThemedText type="title">Log In</ThemedText>
 
-        <TextInput
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.input}
-        />
+        <View style={styles.formBox}>
+          <TextInput
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            style={styles.input}
+            value={email}
+            onChangeText={setEmail}
+          />
 
-        <TextInput
-          placeholder="Password"
-          secureTextEntry
-          style={styles.input}
-        />
+          <TextInput
+            placeholder="Password"
+            secureTextEntry
+            style={styles.input}
+            value={password}
+            onChangeText={setPassword}
+          />
 
-        <View style={styles.buttonContainer}>
-          <Button title="Log In" onPress={handleLogin} />
+          <View style={styles.buttonContainer}>
+            <Button title="Log In" onPress={handleLogin} />
+          </View>
         </View>
       </ThemedView>
     </ParallaxScrollView>
   );
 }
 
+
+
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: '#fff',
   },
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: 40,
     paddingBottom: 20,
-    backgroundColor: '#A1CEDC',
   },
   reactLogo: {
     height: 178,
@@ -78,12 +94,22 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   loginContainer: {
-    padding: 20,
-    gap: 16,
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 24,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+    backgroundColor: '#fff',
+    width: '100%',
   },
   formBox: {
-    backgroundColor: '#f9f9f9',
+    maxWidth: 360,
     padding: 20,
     borderRadius: 12,
     shadowColor: '#000',
@@ -94,16 +120,9 @@ const styles = StyleSheet.create({
     width: '100%',
     gap: 12,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
   buttonContainer: {
     marginTop: 16,
+    width: '100%',
   },
   titleText: {
     fontSize: 24,
