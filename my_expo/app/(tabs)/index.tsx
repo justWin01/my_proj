@@ -22,6 +22,7 @@ function ThemedView({ children, style }: { children: React.ReactNode; style?: an
 }
 
 
+
 export default function HomeScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,8 +31,8 @@ export default function HomeScreen() {
   const handleLogin = () => {
     if (email === initialUser.email && password === initialUser.password) {
       Alert.alert('Login Successful', 'Welcome!');
-      router.push('/DashboardScreen'); // ✅ for Expo Router
- // ✅ Navigate to Dashboard
+      router.push('/DashboardScreen'); 
+
     } else {
       Alert.alert('Login Failed', 'Incorrect email or password.');
     }
@@ -68,7 +69,7 @@ export default function HomeScreen() {
           />
 
           <View style={styles.buttonContainer}>
-            <Button title="Log In" onPress={handleLogin} />
+          <Button title="Log In" onPress={handleLogin} color="#aa4a44" />
           </View>
         </View>
       </ThemedView>
@@ -81,6 +82,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
+    backgroundColor: '#800000', // ✅ Maroon background
   },
   logoContainer: {
     alignItems: 'center',
@@ -101,20 +103,22 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#aa4a44', // ✅ Lighter border for contrast
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff0f0', // ✅ Light background for readability
+    color: '#000', // ✅ Black text inside inputs
     width: '100%',
   },
   formBox: {
     maxWidth: 360,
     padding: 20,
     borderRadius: 12,
+    backgroundColor: '#fff0f0', // ✅ Light background for the box
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 3,
     width: '100%',
@@ -128,8 +132,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
+    color: '#ffffff', // ✅ White title text
   },
   defaultText: {
     fontSize: 16,
+    color: '#f8f8f8', // ✅ Light gray for normal text
   },
 });
