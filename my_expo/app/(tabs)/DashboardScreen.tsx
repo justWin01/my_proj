@@ -16,12 +16,32 @@ import styles from '../../components/DashboardScreenStyles';
 export default function DashboardScreen() {
   const [newPost, setNewPost] = useState('');
   const [posts, setPosts] = useState([
-    { content: 'This is my first post!', likes: 0, hearts: 0, dislikes: 0, comments: 0, liked: false, hearted: false, disliked: false },
+    {
+      content: 'This is my first post!',
+      likes: 0,
+      hearts: 0,
+      dislikes: 0,
+      comments: 0,
+      liked: false,
+      hearted: false,
+      disliked: false,
+      date: new Date().toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }),
+    },
   ]);
   const animations = useRef<Animated.Value[]>([]).current;
 
   const handlePost = () => {
     if (newPost.trim() !== '') {
+      const currentDate = new Date().toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+
       setPosts([
         {
           content: newPost,
@@ -32,6 +52,7 @@ export default function DashboardScreen() {
           liked: false,
           hearted: false,
           disliked: false,
+          date: currentDate,
         },
         ...posts,
       ]);
@@ -88,7 +109,7 @@ export default function DashboardScreen() {
 
   const renderPost = ({ item, index }: { item: any; index: number }) => {
     if (!animations[index]) animations[index] = new Animated.Value(1);
-  
+
     return (
       <View style={styles.postContainer}>
         {/* 👤 Post Header (User Info) */}
@@ -99,16 +120,16 @@ export default function DashboardScreen() {
           />
           <Text style={styles.postUsername}>Sherwin Labe</Text>
         </View>
-  
+
         <Text style={styles.postLabel}></Text>
         <Text style={styles.postContent}>{item.content}</Text>
-        
+
         <TextInput
           style={styles.commentInput}
           placeholder="Write a comment..."
           onFocus={() => handleCommentFocus(index)}
         />
-  
+
         {/* Action Buttons */}
         <View style={styles.actionsRow}>
           <Button
@@ -122,7 +143,9 @@ export default function DashboardScreen() {
             color={item.disliked ? '#B22222' : '#808080'}
           />
           <TouchableWithoutFeedback onPress={() => toggleHeart(index)}>
-            <Animated.View style={{ transform: [{ scale: animations[index] }], marginLeft: 12 }}>
+            <Animated.View
+              style={{ transform: [{ scale: animations[index] }], marginLeft: 12 }}
+            >
               <AntDesign
                 name={item.hearted ? 'heart' : 'hearto'}
                 size={26}
@@ -131,47 +154,54 @@ export default function DashboardScreen() {
             </Animated.View>
           </TouchableWithoutFeedback>
         </View>
-  
-        {/* Count Row */}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10 }}>
-          <Text style={{ fontSize: 13, color: '#333' }}>👍  {item.likes}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>❤️  {item.hearts}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>👎  {item.dislikes}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>💬  {item.comments}</Text>
+
+        {/* Count Row with Date */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 10,
+            alignItems: 'center',
+          }}
+        >
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>👍 {item.likes}</Text>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>❤️ {item.hearts}</Text>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>👎 {item.dislikes}</Text>
+            <Text style={{ fontSize: 13, color: '#333' }}>💬 {item.comments}</Text>
+          </View>
+          <Text style={{ fontSize: 12, color: '#888', marginLeft: 12 }}>{item.date}</Text>
         </View>
       </View>
     );
   };
-  
-  
+
   return (
     <View style={styles.container}>
-    <View style={styles.header}>
-  {/* 👤 User Info (Left) */}
-  <View style={styles.userInfo}>
-    <Image
-      source={require('@/assets/images/unknown.png')}
-      style={styles.avatar}
-    />
-    <View>
-      <Text style={styles.username}>Sherwin Labe</Text>
-      <Text style={styles.userHandle}>@sherwin_labe01</Text>
-    </View>
-  </View>
+      <View style={styles.header}>
+        {/* 👤 User Info (Left) */}
+        <View style={styles.userInfo}>
+          <Image
+            source={require('@/assets/images/unknown.png')}
+            style={styles.avatar}
+          />
+          <View>
+            <Text style={styles.username}>Sherwin Labe</Text>
+            <Text style={styles.userHandle}>@sherwin_labe01</Text>
+          </View>
+        </View>
 
-  {/* 🔍 Search Input (Right) */}
-  <View style={styles.searchSection}>
-    <TextInput
-      placeholder="Search"
-      placeholderTextColor="#ccc"
-      style={styles.searchInput}
-    />
-    <AntDesign name="search1" size={20} color="white" />
-  </View>
-</View>
+        {/* 🔍 Search Input (Right) */}
+        <View style={styles.searchSection}>
+          <TextInput
+            placeholder="Search"
+            placeholderTextColor="#ccc"
+            style={styles.searchInput}
+          />
+          <AntDesign name="search1" size={20} color="white" />
+        </View>
+      </View>
 
-  
-  
       {/* Merged Input + Post Button */}
       <View style={styles.postInputContainer}>
         <TextInput
@@ -185,7 +215,7 @@ export default function DashboardScreen() {
           <Button title="➤" onPress={handlePost} />
         </View>
       </View>
-  
+
       <FlatList
         data={posts}
         keyExtractor={(_, index) => index.toString()}
@@ -194,5 +224,4 @@ export default function DashboardScreen() {
       />
     </View>
   );
-  
 }
