@@ -91,9 +91,18 @@ export default function DashboardScreen() {
   
     return (
       <View style={styles.postContainer}>
-        <Text style={styles.postLabel}>Post</Text>
-        <Text style={styles.postContent}>{item.content}</Text>
+        {/* 👤 Post Header (User Info) */}
+        <View style={styles.postHeader}>
+          <Image
+            source={require('@/assets/images/unknown.png')}
+            style={styles.postAvatar}
+          />
+          <Text style={styles.postUsername}>Sherwin Labe</Text>
+        </View>
   
+        <Text style={styles.postLabel}></Text>
+        <Text style={styles.postContent}>{item.content}</Text>
+        
         <TextInput
           style={styles.commentInput}
           placeholder="Write a comment..."
@@ -107,13 +116,11 @@ export default function DashboardScreen() {
             onPress={() => toggleLike(index)}
             color={item.liked ? '#228B22' : '#808080'}
           />
-  
           <Button
             title="Dislike"
             onPress={() => toggleDislike(index)}
             color={item.disliked ? '#B22222' : '#808080'}
           />
-  
           <TouchableWithoutFeedback onPress={() => toggleHeart(index)}>
             <Animated.View style={{ transform: [{ scale: animations[index] }], marginLeft: 12 }}>
               <AntDesign
@@ -125,31 +132,47 @@ export default function DashboardScreen() {
           </TouchableWithoutFeedback>
         </View>
   
-        {/* Separate Count Row */}
+        {/* Count Row */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10 }}>
-          <Text style={{ fontSize: 13, color: '#333' }}>👍 Likes: {item.likes}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>❤️ Hearts: {item.hearts}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>👎 Dislikes: {item.dislikes}</Text>
-          <Text style={{ fontSize: 13, color: '#333' }}>💬 Comments: {item.comments}</Text>
+          <Text style={{ fontSize: 13, color: '#333' }}>👍  {item.likes}</Text>
+          <Text style={{ fontSize: 13, color: '#333' }}>❤️  {item.hearts}</Text>
+          <Text style={{ fontSize: 13, color: '#333' }}>👎  {item.dislikes}</Text>
+          <Text style={{ fontSize: 13, color: '#333' }}>💬  {item.comments}</Text>
         </View>
       </View>
     );
   };
   
+  
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.userInfo}>
-          <Image
-            source={{
-              uri: 'https://media.istockphoto.com/id/1142192548/vector/man-avatar-profile-male-face-silhouette-or-icon-isolated-on-white-background-vector.jpg',
-            }}
-            style={styles.avatar}
-          />
-          <Text style={styles.username}>John Doe</Text>
-        </View>
-      </View>
+    <View style={styles.header}>
+  {/* 👤 User Info (Left) */}
+  <View style={styles.userInfo}>
+    <Image
+      source={require('@/assets/images/unknown.png')}
+      style={styles.avatar}
+    />
+    <View>
+      <Text style={styles.username}>Sherwin Labe</Text>
+      <Text style={styles.userHandle}>@sherwin_labe01</Text>
+    </View>
+  </View>
 
+  {/* 🔍 Search Input (Right) */}
+  <View style={styles.searchSection}>
+    <TextInput
+      placeholder="Search"
+      placeholderTextColor="#ccc"
+      style={styles.searchInput}
+    />
+    <AntDesign name="search1" size={20} color="white" />
+  </View>
+</View>
+
+  
+  
+      {/* Merged Input + Post Button */}
       <View style={styles.postInputContainer}>
         <TextInput
           style={styles.newPostInput}
@@ -158,9 +181,11 @@ export default function DashboardScreen() {
           onChangeText={setNewPost}
           multiline
         />
-        <Button title="Post" onPress={handlePost} />
+        <View style={styles.postButtonWrapper}>
+          <Button title="➤" onPress={handlePost} />
+        </View>
       </View>
-
+  
       <FlatList
         data={posts}
         keyExtractor={(_, index) => index.toString()}
@@ -169,4 +194,5 @@ export default function DashboardScreen() {
       />
     </View>
   );
+  
 }

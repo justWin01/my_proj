@@ -3,26 +3,48 @@ import { StyleSheet } from 'react-native';
 const DashboardScreenStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',// Maroon background
         padding: 10,
+        backgroundColor: 'rgba(128, 0, 0, 0.1)', // light maroon with transparency (blur-like effect)
       },
       
 
-  header: {
+      header: {
+        flexDirection: 'row',         // layout children horizontally
+        justifyContent: 'flex-start', // aligns children to the LEFT (horizontal)
+        alignItems: 'center',        
+        backgroundColor: '#800000',
+        height: 60,
+        marginHorizontal: 20,
+        paddingHorizontal: 20,
+        marginTop: 20,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
+        elevation: 6,
+      },
+      
+  
+  postHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    backgroundColor: '#800000',
-    height: 100,
-    paddingHorizontal: 16,
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 6,
+    marginBottom: 8,
   },
+  
+  postAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 8,
+  },
+  
+  postUsername: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    color: '#333',
+  },
+  
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -35,31 +57,70 @@ const DashboardScreenStyles = StyleSheet.create({
     marginRight: 10,
   },
   
-
   username: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#fff',
+    color: 'white',
+    fontWeight: 'bold',
   },
+  
+  userHandle: {
+    color: '#ccc',
+    fontSize: 12,
+  },
+  
+  searchSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#a94444',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    height: 35,
+    marginLeft: 'auto', // 👈 pushes to the end of row
+  },
+  
+  
+  searchInput: {
+    color: 'white',
+    width: 50   ,
+    marginRight: 6,
+  },
+  
+  
+  headerDivider: {
+    height: 1,
+    backgroundColor: '#ccc',
+    marginTop: 8,
+  },
+  
 
   postInputContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    backgroundColor: '#f8f8f8',
-  },
-
-  newPostInput: {
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
-    fontSize: 14,
     backgroundColor: '#fff',
-    height: 80,
-    width: '90%',
-    marginBottom: 10,
+    padding: 10,
+    borderRadius: 10,
+    margin: 10,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
   },
+  
+  newPostInput: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 14,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    maxHeight: 100,
+    marginRight: 10,
+  },
+  
+  postButtonWrapper: {
+    justifyContent: 'center',
+  },
+  
 
   mainContent: {
     flex: 1,
