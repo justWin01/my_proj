@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { SafeAreaView, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import {
   View,
   Text,
@@ -64,6 +65,7 @@ export default function DashboardScreen() {
     }
   };
 
+  
   const toggleHeart = (index: number) => {
     const newPosts = [...posts];
     const post = newPosts[index];
@@ -177,51 +179,70 @@ export default function DashboardScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        {/* 👤 User Info (Left) */}
-        <View style={styles.userInfo}>
-          <Image
-            source={require('@/assets/images/unknown.png')}
-            style={styles.avatar}
-          />
-          <View>
-            <Text style={styles.username}>Sherwin Labe</Text>
-            <Text style={styles.userHandle}>@sherwin_labe01</Text>
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'rgba(128, 0, 0, 0.5)'}}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 40}
+      >
+        <View style={{ flex: 1 }}>
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.userInfo}>
+              <Image
+                source={require('@/assets/images/unknown.png')}
+                style={styles.avatar}
+              />
+              <View>
+                <Text style={styles.username}>Sherwin Labe</Text>
+                <Text style={styles.userHandle}>@sherwin_labe01</Text>
+              </View>
+            </View>
+  
+            <View style={styles.searchNotifWrapper}>
+              <View style={styles.searchSection}>
+                <TextInput
+                  placeholder="Search"
+                  placeholderTextColor="#ccc"
+                  style={styles.searchInput}
+                />
+                <AntDesign name="search1" size={20} color="white" />
+              </View>
+              <TouchableWithoutFeedback onPress={() => Alert.alert('Notifications')}>
+                <View style={styles.notifIcon}>
+                  <AntDesign name="bells" size={22} color="white" />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
           </View>
-        </View>
-
-        {/* 🔍 Search Input (Right) */}
-        <View style={styles.searchSection}>
-          <TextInput
-            placeholder="Search"
-            placeholderTextColor="#ccc"
-            style={styles.searchInput}
+  
+          {/* Post Input */}
+          <View style={styles.postInputContainer}>
+            <TextInput
+              style={styles.newPostInput}
+              placeholder="What's on your mind?..."
+              value={newPost}
+              onChangeText={setNewPost}
+              multiline
+            />
+            <View style={styles.postButtonWrapper}>
+              <Button title="➤" onPress={handlePost} />
+            </View>
+          </View>
+  
+          {/* ✅ Scrollable Post List */}
+          <FlatList
+            style={{ flex: 1 }}
+            data={posts}
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={({ item, index }) => renderPost({ item, index })}
+            contentContainerStyle={{ paddingBottom: 120 }}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={true}
           />
-          <AntDesign name="search1" size={20} color="white" />
         </View>
-      </View>
-
-      {/* Merged Input + Post Button */}
-      <View style={styles.postInputContainer}>
-        <TextInput
-          style={styles.newPostInput}
-          placeholder="Write your post here..."
-          value={newPost}
-          onChangeText={setNewPost}
-          multiline
-        />
-        <View style={styles.postButtonWrapper}>
-          <Button title="➤" onPress={handlePost} />
-        </View>
-      </View>
-
-      <FlatList
-        data={posts}
-        keyExtractor={(_, index) => index.toString()}
-        renderItem={({ item, index }) => renderPost({ item, index })}
-        contentContainerStyle={styles.mainContent}
-      />
-    </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
+
 }
