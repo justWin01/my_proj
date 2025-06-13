@@ -9,8 +9,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import { useRouter } from "expo-router"; // ✅ Import navigation
-import { initialUser } from "@/utils/userData";
+import { useRouter } from "expo-router";
 import styles from "../../components/HomeScreen.styles";
 
 function ParallaxScrollView({ children }: { children: React.ReactNode }) {
@@ -44,14 +43,29 @@ function ThemedView({
 export default function HomeScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter(); // ✅ Hook for navigation
+  const router = useRouter();
 
-  const handleLogin = () => {
-    if (email === initialUser.email && password === initialUser.password) {
-      Alert.alert("Login Successful", "Welcome!");
-      router.push("/DashboardScreen");
-    } else {
-      Alert.alert("Login Failed", "Incorrect email or password.");
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://192.168.100.8:5000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert("Login Successful", `Welcome, ${data.user.full_name}!`);
+        router.push("/DashboardScreen");
+      } else {
+        Alert.alert("Login Failed", data.message || "Incorrect email or password.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      Alert.alert("Error", "Could not connect to the server.");
     }
   };
 

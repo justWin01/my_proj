@@ -6,6 +6,32 @@ routes_user = Blueprint('routes_user', __name__)
 
 def ascii_encode_password(pw: str) -> str:
     return pw.encode('ascii').hex()
+@routes_user.route('/login', methods=['POST'])
+def login_user():
+    data = request.get_json()
+
+    if not data or 'email' not in data or 'password' not in data:
+        return jsonify({'error': 'Email and password are required'}), 400
+
+    email = data['email']
+    encoded_password = ascii_encode_password(data['password'])
+
+    user = User.query.filter_by(email=email, password=encoded_password).first()
+
+    if user:
+        return jsonify({
+            'status': 'success',
+            'user': {
+                'user_id': user.user_id,
+                'username': user.username,
+                'email': user.email,
+                'full_name': user.full_name,
+                'join_date': user.join_date.strftime('%Y-%m-%d'),
+                'follower_count': user.follower_count
+            }
+        }), 200
+    else:
+        return jsonify({'status': 'error', 'message': 'Invalid email or password'}), 401
 
 # ----------------------
 # POST Route - Create User

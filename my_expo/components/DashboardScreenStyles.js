@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
+
+
 const DashboardScreenStyles = StyleSheet.create({
+    
   container: {
     flex: 1,
     padding: 10,
@@ -9,6 +12,7 @@ const DashboardScreenStyles = StyleSheet.create({
   mainContent: {
     paddingBottom: 100, // or any safe value to prevent clipping
   },
+  
 
   header: {
     flexDirection: "row", // layout children horizontally
@@ -33,7 +37,7 @@ const DashboardScreenStyles = StyleSheet.create({
   postHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: 50,
   },
 
   postAvatar: {
@@ -111,22 +115,84 @@ const DashboardScreenStyles = StyleSheet.create({
     marginTop: 8,
   },
 
-  postInputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 10,
-    borderRadius: 10,
-    margin: 30,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
+  togglePostButton: {
+    position: 'absolute',
+    bottom: 80, // slightly above floating menu
+    right: 20,
+    backgroundColor: '#800000',
+    borderRadius: 50,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
     shadowRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    elevation: 6,
+    zIndex: 999,
   },
+  
+  togglePostButtonText: {
+    color: 'white',
+    fontSize: 26,
+    fontWeight: 'bold',
+  },
+  
+  floatingPostInput: {
+    position: 'absolute',
+    bottom: 60,
+    left: 20,
+    right: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    borderRadius: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  
+  
+  floatingTitleInput: {
+    fontSize: 16,
+    fontWeight: '600',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    marginBottom: 6,
+    paddingVertical: 20,
+    color: '#333',
+  },
+  
+  floatingPostInputBox: {
+    fontSize: 14,
+    height: 100,
+    textAlignVertical: 'top',
+    color: '#333',
+    padding: 6,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+  
+  floatingPostButton: {
+    backgroundColor: '#800000',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 25,
+    width: 50, // or '80%' for responsive sizing
+    alignItems: 'flex-start', // aligns children to the left
+  },
+  
+  floatingPostButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'left', // aligns text inside button
+    alignSelf: 'flex-start', // aligns the text block to the left of the parent
+  },
+  
 
   newPostInput: {
     flex: 1,
@@ -137,25 +203,6 @@ const DashboardScreenStyles = StyleSheet.create({
     borderRadius: 8,
     maxHeight: 100,
     marginRight: 10,
-  },
-
-  postButtonWrapper: {
-    justifyContent: "center",
-    backgroundColor: "transparent", // or any background you prefer
-  },
-
-  customPostButton: {
-    backgroundColor: "#800000", // maroon or any color
-    paddingVertical: 6,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-
-  customPostButtonText: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
   },
 
   mainContent: {
@@ -174,7 +221,7 @@ const DashboardScreenStyles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 16,
-    marginVertical: 10,
+    marginVertical: 50,
     width: "90%", // or use fixed width like 340
     alignSelf: "center", // 💡 This centers the post container
     shadowColor: "#000",
@@ -243,6 +290,24 @@ const DashboardScreenStyles = StyleSheet.create({
     marginLeft: 6,
     fontSize: 14,
   },
+  newTitleInput: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  
+  postTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#222',
+    marginBottom: 4,
+  },
+  
+  
 });
 
 export default DashboardScreenStyles;
