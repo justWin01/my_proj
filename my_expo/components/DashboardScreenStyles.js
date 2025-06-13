@@ -119,7 +119,7 @@ const DashboardScreenStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 80, // slightly above floating menu
     right: 20,
-    backgroundColor: '#800000',
+    backgroundColor: 'black',
     borderRadius: 50,
     width: 50,
     height: 50,
@@ -144,13 +144,10 @@ const DashboardScreenStyles = StyleSheet.create({
     bottom: 60,
     left: 20,
     right: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backgroundColor: '#800000',
     borderRadius: 10,
     padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
+    
     elevation: 5,
   },
   
@@ -162,14 +159,15 @@ const DashboardScreenStyles = StyleSheet.create({
     borderColor: '#ddd',
     marginBottom: 6,
     paddingVertical: 20,
-    color: '#333',
+    color: 'white', // 🔴 Maroon text color
   },
+  
   
   floatingPostInputBox: {
     fontSize: 14,
     height: 100,
     textAlignVertical: 'top',
-    color: '#333',
+    color: 'white',
     padding: 6,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -237,37 +235,59 @@ const DashboardScreenStyles = StyleSheet.create({
     marginBottom: 8,
   },
 
+  postTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#222',
+    marginBottom: 4,
+    padding: 8,
+    borderWidth: 1, // ✅ Add border
+    borderColor: 'black', // ✅ Maroon border
+    borderRadius: 6, // Optional: make it look cleaner
+    backgroundColor: '#fff', // Optional: white background
+  },
+  
   postContent: {
     fontSize: 14,
-    color: "#333",
-    textAlign: "center",
+    color: '#333',
+    textAlign: 'center',
     marginBottom: 12,
+    padding: 8,
+    borderWidth: 1, // ✅ Add border
+    borderColor: 'black', // ✅ Maroon border
+    borderRadius: 6, // Optional
+    backgroundColor: '#fff', // Optional
   },
+  
 
   commentInput: {
-    width: "100%",
+    borderColor: '#ccc',
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
+    borderRadius: 10,
+    padding: 8,
     fontSize: 14,
-    marginBottom: 12,
-    backgroundColor: "#fff",
+    marginTop: 8,
+    backgroundColor: 'white',
   },
+  
+  
+  
 
   actionsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    gap: 8,
+    flexDirection: 'row',
+    justifyContent: 'center', // ⬅ center align horizontally
+    alignItems: 'center',
+    marginTop: 10,
+    gap: 12, // space between buttons
   },
+  
+
   floatingMenu: {
     position: "absolute",
     bottom: 30,
     right: 20,
-    backgroundColor: "#800000",
-    paddingVertical: 10,
+    backgroundColor: "black",
+    paddingVertical: 2,
     paddingHorizontal: 15,
     borderRadius: 20,
     flexDirection: "row",
