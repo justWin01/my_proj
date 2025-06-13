@@ -117,12 +117,12 @@ const DashboardScreenStyles = StyleSheet.create({
 
   togglePostButton: {
     position: 'absolute',
-    bottom: 80, // slightly above floating menu
+    bottom: 70, // slightly above floating menu
     right: 20,
-    backgroundColor: 'black',
-    borderRadius: 50,
-    width: 50,
-    height: 50,
+    // backgroundColor: 'black', ← removed
+    color: 'white',
+    width: 60,
+    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -132,6 +132,7 @@ const DashboardScreenStyles = StyleSheet.create({
     elevation: 6,
     zIndex: 999,
   },
+  
   
   togglePostButtonText: {
     color: 'white',
@@ -167,7 +168,7 @@ const DashboardScreenStyles = StyleSheet.create({
     fontSize: 14,
     height: 100,
     textAlignVertical: 'top',
-    color: 'white',
+    color: '',
     padding: 6,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -284,8 +285,8 @@ const DashboardScreenStyles = StyleSheet.create({
 
   floatingMenu: {
     position: "absolute",
-    bottom: 30,
-    right: 20,
+    bottom: 20,
+    right: 270,
     backgroundColor: "black",
     paddingVertical: 2,
     paddingHorizontal: 15,

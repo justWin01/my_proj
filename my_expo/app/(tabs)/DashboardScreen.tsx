@@ -349,7 +349,7 @@ export default function DashboardScreen() {
           onPress={() => setShowPostInput(prev => !prev)}
           style={styles.togglePostButton}
         >
-          <Text style={styles.togglePostButtonText}>{showPostInput ? '→' : '📝'}</Text>
+          <Text style={styles.togglePostButtonText}>{showPostInput ? '→' : '➕'}</Text>
         </TouchableOpacity>
 
         {/* Logout Floating Menu */}
