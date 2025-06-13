@@ -1,12 +1,7 @@
-import React, { useState, useRef } from "react";
-import { TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
-import {
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-} from "react-native";
+import React, { useState, useRef } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
+import { SafeAreaView, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import {
   View,
   Text,
@@ -17,15 +12,15 @@ import {
   Image,
   Animated,
   TouchableWithoutFeedback,
-} from "react-native";
-import { AntDesign } from "@expo/vector-icons";
-import styles from "../../components/DashboardScreenStyles";
+} from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import styles from '../../components/DashboardScreenStyles';
 
 export default function DashboardScreen() {
-  const [newPost, setNewPost] = useState("");
+  const [newPost, setNewPost] = useState('');
   const [posts, setPosts] = useState([
     {
-      content: "This is my first post!",
+      content: 'This is my first post!',
       likes: 0,
       hearts: 0,
       dislikes: 0,
@@ -34,20 +29,20 @@ export default function DashboardScreen() {
       hearted: false,
       disliked: false,
       date: new Date().toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
       }),
     },
   ]);
   const animations = useRef<Animated.Value[]>([]).current;
 
   const handlePost = () => {
-    if (newPost.trim() !== "") {
+    if (newPost.trim() !== '') {
       const currentDate = new Date().toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
       });
 
       setPosts([
@@ -65,10 +60,10 @@ export default function DashboardScreen() {
         ...posts,
       ]);
       animations.unshift(new Animated.Value(1));
-      setNewPost("");
-      Alert.alert("Post Saved", "Your post has been added.");
+      setNewPost('');
+      Alert.alert('Post Saved', 'Your post has been added.');
     } else {
-      Alert.alert("Empty Post", "Please write something before posting.");
+      Alert.alert('Empty Post', 'Please write something before posting.');
     }
   };
 
@@ -125,7 +120,7 @@ export default function DashboardScreen() {
         {/* 👤 Post Header (User Info) */}
         <View style={styles.postHeader}>
           <Image
-            source={require("@/assets/images/unknown.png")}
+            source={require('@/assets/images/unknown.png')}
             style={styles.postAvatar}
           />
           <Text style={styles.postUsername}>Sherwin Labe</Text>
@@ -145,24 +140,21 @@ export default function DashboardScreen() {
           <Button
             title="Like"
             onPress={() => toggleLike(index)}
-            color={item.liked ? "#228B22" : "#808080"}
+            color={item.liked ? '#228B22' : '#808080'}
           />
           <Button
             title="Dislike"
             onPress={() => toggleDislike(index)}
-            color={item.disliked ? "#B22222" : "#808080"}
+            color={item.disliked ? '#B22222' : '#808080'}
           />
           <TouchableWithoutFeedback onPress={() => toggleHeart(index)}>
             <Animated.View
-              style={{
-                transform: [{ scale: animations[index] }],
-                marginLeft: 12,
-              }}
+              style={{ transform: [{ scale: animations[index] }], marginLeft: 12 }}
             >
               <AntDesign
-                name={item.hearted ? "heart" : "hearto"}
+                name={item.hearted ? 'heart' : 'hearto'}
                 size={26}
-                color={item.hearted ? "red" : "gray"}
+                color={item.hearted ? 'red' : 'gray'}
               />
             </Animated.View>
           </TouchableWithoutFeedback>
@@ -171,47 +163,37 @@ export default function DashboardScreen() {
         {/* Count Row with Date */}
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             marginTop: 10,
-            alignItems: "center",
+            alignItems: 'center',
           }}
         >
-          <View style={{ flexDirection: "row" }}>
-            <Text style={{ fontSize: 13, color: "#333", marginRight: 8 }}>
-              👍 {item.likes}
-            </Text>
-            <Text style={{ fontSize: 13, color: "#333", marginRight: 8 }}>
-              ❤️ {item.hearts}
-            </Text>
-            <Text style={{ fontSize: 13, color: "#333", marginRight: 8 }}>
-              👎 {item.dislikes}
-            </Text>
-            <Text style={{ fontSize: 13, color: "#333" }}>
-              💬 {item.comments}
-            </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>👍 {item.likes}</Text>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>❤️ {item.hearts}</Text>
+            <Text style={{ fontSize: 13, color: '#333', marginRight: 8 }}>👎 {item.dislikes}</Text>
+            <Text style={{ fontSize: 13, color: '#333' }}>💬 {item.comments}</Text>
           </View>
-          <Text style={{ fontSize: 12, color: "#888", marginLeft: 12 }}>
-            {item.date}
-          </Text>
+          <Text style={{ fontSize: 12, color: '#888', marginLeft: 12 }}>{item.date}</Text>
         </View>
       </View>
     );
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "rgba(128, 0, 0, 0.5)" }}>
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'rgba(128, 0, 0, 0.5)'}}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={Platform.OS === "android" ? 0 : 40}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={Platform.OS === 'android' ? 0 : 40}
       >
         <View style={{ flex: 1 }}>
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.userInfo}>
               <Image
-                source={require("@/assets/images/unknown.png")}
+                source={require('@/assets/images/unknown.png')}
                 style={styles.avatar}
               />
               <View>
@@ -219,7 +201,7 @@ export default function DashboardScreen() {
                 <Text style={styles.userHandle}>@sherwin_labe01</Text>
               </View>
             </View>
-
+  
             <View style={styles.searchNotifWrapper}>
               <View style={styles.searchSection}>
                 <TextInput
@@ -229,16 +211,14 @@ export default function DashboardScreen() {
                 />
                 <AntDesign name="search1" size={20} color="white" />
               </View>
-              <TouchableWithoutFeedback
-                onPress={() => Alert.alert("Notifications")}
-              >
+              <TouchableWithoutFeedback onPress={() => Alert.alert('Notifications')}>
                 <View style={styles.notifIcon}>
                   <AntDesign name="bells" size={22} color="white" />
                 </View>
               </TouchableWithoutFeedback>
             </View>
           </View>
-
+  
           {/* Post Input */}
           <View style={styles.postInputContainer}>
             <TextInput
@@ -249,15 +229,12 @@ export default function DashboardScreen() {
               multiline
             />
             <View style={styles.postButtonWrapper}>
-              <TouchableOpacity
-                onPress={handlePost}
-                style={styles.customPostButton}
-              >
-                <Text style={styles.customPostButtonText}>➤</Text>
-              </TouchableOpacity>
+            <TouchableOpacity onPress={handlePost} style={styles.customPostButton}>
+            <Text style={styles.customPostButtonText}>➤</Text>
+  </TouchableOpacity>
             </View>
           </View>
-
+  
           {/* ✅ Scrollable Post List */}
           <FlatList
             style={{ flex: 1 }}
@@ -272,18 +249,21 @@ export default function DashboardScreen() {
       </KeyboardAvoidingView>
       {/* Floating Menu Bar */}
       <View style={styles.floatingMenu}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            Alert.alert("Logged out", "You have been logged out.");
-            router.replace("/"); // adjust this to your login route path if it's different
-          }}
-        >
-          <View style={styles.menuItem}>
-            <AntDesign name="logout" size={20} color="white" />
-            <Text style={styles.menuText}>Logout</Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+  <TouchableWithoutFeedback
+    onPress={() => {
+      Alert.alert('Logged out', 'You have been logged out.');
+      router.replace('/'); // adjust this to your login route path if it's different
+    }}
+  >
+    <View style={styles.menuItem}>
+      <AntDesign name="logout" size={20} color="white" />
+      <Text style={styles.menuText}>Logout</Text>
+    </View>
+  </TouchableWithoutFeedback>
+</View>
+
+
     </SafeAreaView>
   );
+
 }
