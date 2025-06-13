@@ -1,212 +1,248 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 const DashboardScreenStyles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 10,
-		 // light maroon with transparency (blur-like effect)
-	},
-	mainContent: {
-		paddingBottom: 100, // or any safe value to prevent clipping
-	},
+  container: {
+    flex: 1,
+    padding: 10,
+    // light maroon with transparency (blur-like effect)
+  },
+  mainContent: {
+    paddingBottom: 100, // or any safe value to prevent clipping
+  },
 
+  header: {
+    flexDirection: "row", // layout children horizontally
+    justifyContent: "flex-start", // aligns children to the LEFT (horizontal)
+    alignItems: "center",
+    backgroundColor: "#800000",
+    height: 60,
+    marginHorizontal: 20,
+    paddingHorizontal: 20,
+    marginTop: 60,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 6,
+  },
 
-	header: {
-		flexDirection: 'row', // layout children horizontally
-		justifyContent: 'flex-start', // aligns children to the LEFT (horizontal)
-		alignItems: 'center',
-		backgroundColor: '#800000',
-		height: 60,
-		marginHorizontal: 20,
-		paddingHorizontal: 20,
-		marginTop: 60,
-		borderRadius: 10,
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 4
-		},
-		shadowOpacity: 0.2,
-		shadowRadius: 6,
-		elevation: 6
-	},
+  postHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
 
+  postAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginRight: 8,
+  },
 
-	postHeader: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginBottom: 8
-	},
+  postUsername: {
+    fontWeight: "bold",
+    fontSize: 14,
+    color: "#333",
+  },
 
-	postAvatar: {
-		width: 30,
-		height: 30,
-		borderRadius: 15,
-		marginRight: 8
-	},
+  userInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-	postUsername: {
-		fontWeight: 'bold',
-		fontSize: 14,
-		color: '#333'
-	},
+  avatar: {
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+    marginRight: 10,
+    borderWidth: 4, // thickness of the border
+    borderColor: "red", // color of the border
+    marginTop: -4, // moves avatar 20 units down
+    marginLeft: -30,
+  },
 
-	userInfo: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
+  username: {
+    color: "white",
+    fontWeight: "bold",
+  },
 
-	avatar: {
-		width: 80,
-		height: 80,
-		borderRadius: 100,
-		marginRight: 10,
-		borderWidth: 4, // thickness of the border
-		borderColor: 'red', // color of the border
-		marginTop: -4, // moves avatar 20 units down
-		marginLeft: -30
-	},
+  userHandle: {
+    color: "#ccc",
+    fontSize: 12,
+  },
 
+  searchSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#a94444",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    height: 35,
+    flexShrink: 1,
+    marginLeft: 24,
+  },
 
-	username: {
-		color: 'white',
-		fontWeight: 'bold'
-	},
+  searchInput: {
+    color: "white",
+    width: 70,
+    marginRight: 6,
+  },
+  searchNotifWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6, // If your version doesn’t support `gap`, use margin instead
+  },
 
-	userHandle: {
-		color: '#ccc',
-		fontSize: 12
-	},
+  notifIcon: {
+    padding: 1,
+    borderRadius: 10,
+    backgroundColor: "#444", // or any background color you prefer
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-	searchSection: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		backgroundColor: '#a94444',
-		borderRadius: 8,
-		paddingHorizontal: 10,
-		height: 35,
-		flexShrink: 1,
-		marginLeft: 24
-	},
+  headerDivider: {
+    height: 1,
+    backgroundColor: "#ccc",
+    marginTop: 8,
+  },
 
-	searchInput: {
-		color: 'white',
-		width: 50,
-		marginRight: 6
-	},
-	searchNotifWrapper: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		gap: 6, // If your version doesn’t support `gap`, use margin instead
-	},
+  postInputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 10,
+    margin: 30,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
 
-	notifIcon: {
-		padding: 6,
-		borderRadius: 20,
-		backgroundColor: '#444', // or any background color you prefer
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
+  newPostInput: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 14,
+    backgroundColor: "#f5f5f5",
+    borderRadius: 8,
+    maxHeight: 100,
+    marginRight: 10,
+  },
 
+  postButtonWrapper: {
+    justifyContent: "center",
+    backgroundColor: "transparent", // or any background you prefer
+  },
 
-	headerDivider: {
-		height: 1,
-		backgroundColor: '#ccc',
-		marginTop: 8
-	},
+  customPostButton: {
+    backgroundColor: "#800000", // maroon or any color
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: "center",
+  },
 
+  customPostButtonText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 
-	postInputContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		backgroundColor: '#fff',
-		padding: 10,
-		borderRadius: 10,
-		margin: 30,
-		elevation: 3,
-		shadowColor: '#000',
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		shadowOffset: {
-			width: 0,
-			height: 2
-		}
-	},
+  mainContent: {
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
+  },
 
-	newPostInput: {
-		flex: 1,
-		paddingHorizontal: 12,
-		paddingVertical: 8,
-		fontSize: 14,
-		backgroundColor: '#f5f5f5',
-		borderRadius: 8,
-		maxHeight: 100,
-		marginRight: 10
-	},
+  postOuterContainer: {
+    width: "100%",
+    alignItems: "center",
+    padding: 16,
+  },
 
-	postButtonWrapper: {
-		justifyContent: 'center'
-	},
+  postContainer: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 16,
+    marginVertical: 10,
+    width: "90%", // or use fixed width like 340
+    alignSelf: "center", // 💡 This centers the post container
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3, // for Android shadow
+  },
 
+  postLabel: {
+    fontSize: 16,
+    fontWeight: "500",
+    marginBottom: 8,
+  },
 
-	mainContent: {
-		flex: 1,
-		alignItems: 'center',
-		padding: 20
-	},
+  postContent: {
+    fontSize: 14,
+    color: "#333",
+    textAlign: "center",
+    marginBottom: 12,
+  },
 
-	postOuterContainer: {
-		width: '100%',
-		alignItems: 'center',
-		padding: 16
-	},
+  commentInput: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    fontSize: 14,
+    marginBottom: 12,
+    backgroundColor: "#fff",
+  },
 
-	postContainer: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 16,
-        marginVertical: 10,
-        width: '90%', // or use fixed width like 340
-        alignSelf: 'center', // 💡 This centers the post container
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3, // for Android shadow
-      },
-      
+  actionsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    gap: 8,
+  },
+  floatingMenu: {
+    position: "absolute",
+    bottom: 30,
+    right: 20,
+    backgroundColor: "#800000",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 6,
+  },
 
-	postLabel: {
-		fontSize: 16,
-		fontWeight: '500',
-		marginBottom: 8
-	},
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
 
-	postContent: {
-		fontSize: 14,
-		color: '#333',
-		textAlign: 'center',
-		marginBottom: 12
-	},
-
-	commentInput: {
-		width: '100%',
-		borderWidth: 1,
-		borderColor: '#ccc',
-		borderRadius: 8,
-		paddingHorizontal: 10,
-		paddingVertical: 8,
-		fontSize: 14,
-		marginBottom: 12,
-		backgroundColor: '#fff'
-	},
-
-	actionsRow: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		width: '100%',
-		gap: 8
-	}
+  menuText: {
+    color: "white",
+    fontWeight: "bold",
+    marginLeft: 6,
+    fontSize: 14,
+  },
 });
 
 export default DashboardScreenStyles;

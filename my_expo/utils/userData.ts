@@ -1,5 +1,4 @@
 export const initialUser = {
-    email: 'labesherwin@gmail.com',
-    password: 'password123',
-  };
-  
+  email: "labesherwin@gmail.com",
+  password: "password123",
+};
