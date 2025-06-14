@@ -49,6 +49,7 @@ export default function DashboardScreen() {
           name: user.name,
           text: 'Welcome! 🎉',
           timestamp: new Date(),
+          avatar: require('@/assets/images/unknown.png'),
         },
       ],
       date: new Date().toLocaleDateString(undefined, {
@@ -238,6 +239,7 @@ export default function DashboardScreen() {
                     name: name,
                     text: commentText,
                     timestamp: new Date(),
+                    avatar: require('@/assets/images/unknown.png'), // ✅ Default avatar
                   });
                   updated[index].newComment = '';
                   updated[index].comments = updated[index].commentList.length;
@@ -316,13 +318,15 @@ export default function DashboardScreen() {
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.userInfo}>
-              <View>
-              <Text style={styles.username}>{user.name}</Text>
-              <Text style={styles.userHandle}>@{user.username}</Text>
-
-
-              </View>
-            </View>
+                <Image
+      source={require('@/assets/images/unknown.png')}
+      style={styles.avatar}
+                        />
+    <View>
+      <Text style={styles.username}>{user.name}</Text>
+      <Text style={styles.userHandle}>@{user.username}</Text>
+    </View>
+  </View>
 
             <View style={styles.searchNotifWrapper}>
               <View style={styles.searchSection}>

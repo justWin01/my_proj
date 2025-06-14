@@ -61,6 +61,13 @@ const DashboardScreenStyles = StyleSheet.create({
     alignItems: "center",
   },
 
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 12,
+  },
+
   username: {
     color: "white",
     fontWeight: "bold",
@@ -257,12 +264,13 @@ const DashboardScreenStyles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
-    color:'white',
+    color: 'black', // ← changed from 'white' to 'black'
     padding: 8,
     fontSize: 14,
     marginTop: 8,
     backgroundColor: 'white',
   },
+
   
   
   
