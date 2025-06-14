@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 40,
+    paddingTop: 100,
     paddingBottom: 20,
+    
   },
   reactLogo: {
-    height: 178,
+    height: 200,
     width: 290,
     resizeMode: 'contain',
   },
@@ -21,6 +22,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
+    paddingTop: 0.25,
+    paddingBottom: 20,
   },
   input: {
     borderWidth: 1,
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
     maxWidth: 360,
     padding: 20,
     borderRadius: 12,
-    backgroundColor: '#fff0f0',
+    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
@@ -50,10 +53,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   titleText: {
-    fontSize: 24,
+    fontSize: 50,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#ffffff',
+    color: 'white',
   },
   defaultText: {
     fontSize: 16,
