@@ -44,10 +44,9 @@
         showCommentInput: false,
         newComment: '',
         commentList: [
-          {
+          { 
             id: 1,
             name: user.name,
-            avatar: require('@/assets/images/unknown.png'),
             text: 'Welcome! 🎉',
             timestamp: new Date(),
           },
@@ -76,20 +75,23 @@
       });
 
       const newPostObj = {
-        title: newTitle,
-        content: newPost,
-        likes: 0,
-        hearts: 0,
-        dislikes: 0,
-        comments: 0,
-        liked: false,
-        hearted: false,
-        disliked: false,
-        showCommentInput: false,
-        newComment: '',
-        commentList: [],
-        date: currentDate,
-      };
+      title: newTitle,
+      content: newPost,
+      name: user.name,          // <-- include name
+      username: user.username,  // <-- include username
+      likes: 0,
+      hearts: 0,
+      dislikes: 0,
+      comments: 0,
+      liked: false,  
+      hearted: false,
+      disliked: false,
+      showCommentInput: false,
+      newComment: '',
+      commentList: [],
+    date: currentDate,
+};
+
 
       setPosts([newPostObj, ...posts]);
       animations.unshift(new Animated.Value(1));
@@ -195,8 +197,8 @@
       return (
         <View style={styles.postContainer}>
           <View style={styles.postHeader}>
-            <Image source={require('@/assets/images/unknown.png')} style={styles.postAvatar} />
-            <Text style={styles.postUsername}>Sherwin Labe</Text>
+            <Text style={styles.postUsername}>{item.name}</Text>
+
           </View>
 
           <Text style={styles.postTitle}>{item.title}</Text>
@@ -235,8 +237,7 @@
                     const commentText = updated[index].newComment.trim();
                     updated[index].commentList.unshift({
                       id: Date.now(),
-                      name: user.name,
-                      avatar: require('@/assets/images/unknown.png'),
+                      name: name,
                       text: commentText,
                       timestamp: new Date(),
                     });
@@ -317,10 +318,10 @@
             {/* Header */}
             <View style={styles.header}>
               <View style={styles.userInfo}>
-                <Image source={require('@/assets/images/unknown.png')} style={styles.avatar} />
                 <View>
                 <Text style={styles.username}>{user.name}</Text>
                 <Text style={styles.userHandle}>@{user.username}</Text>
+
 
                 </View>
               </View>

@@ -58,17 +58,6 @@ const DashboardScreenStyles = StyleSheet.create({
     alignItems: "center",
   },
 
-  avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 100,
-    marginRight: 10,
-    borderWidth: 4, // thickness of the border
-    borderColor: "red", // color of the border
-    marginTop: -4, // moves avatar 20 units down
-    marginLeft: -30,
-  },
-
   username: {
     color: "white",
     fontWeight: "bold",
@@ -254,8 +243,8 @@ const DashboardScreenStyles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 12,
     padding: 8,
-    borderWidth: 1, // ✅ Add border
-    borderColor: 'black', // ✅ Maroon border
+    borderWidth: 1, // 
+    borderColor: 'black', // 
     borderRadius: 6, // Optional
     backgroundColor: '#fff', // Optional
   },
@@ -265,6 +254,7 @@ const DashboardScreenStyles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
+    color:'white',
     padding: 8,
     fontSize: 14,
     marginTop: 8,
