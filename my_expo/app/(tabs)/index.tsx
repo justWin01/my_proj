@@ -13,6 +13,7 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import styles from "../../components/HomeScreen.styles";
+import { dummyUsers } from "../../data/dummyUsers"; // ✅ Import dummy accounts
 
 function ParallaxScrollView({ children }: { children: React.ReactNode }) {
   return <ScrollView style={styles.scrollView}>{children}</ScrollView>;
@@ -49,41 +50,37 @@ export default function HomeScreen() {
   const [agreed, setAgreed] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (!agreed) {
       Alert.alert("Policy Required", "You must agree to the policy to proceed.");
       return;
     }
-
-    try {
-      const response = await fetch("http://192.168.100.8:5000/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+  
+    const matchedUser = dummyUsers.find(
+      (u) => u.email === email && u.password === password
+    );
+  
+    if (matchedUser) {
+      Alert.alert("Login Successful", `Welcome, ${matchedUser.username}!`);
+      router.replace({
+        pathname: "/(tabs)/DashboardScreen",
+        params: {
+          name: matchedUser.name,
+          username: matchedUser.username,
         },
-        body: JSON.stringify({ email, password }),
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        Alert.alert("Login Successful", `Welcome, ${data.user.full_name}!`);
-        router.push("/DashboardScreen");
-      } else {
-        Alert.alert("Login Failed", data.message || "Incorrect email or password.");
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      Alert.alert("Error", "Could not connect to the server.");
+    } else {
+      Alert.alert("Login Failed", "Incorrect email or password.");
     }
   };
+  
 
   return (
     <ParallaxScrollView>
       <ThemedView style={styles.logoContainer}>
         <Image
           source={require("@/assets/images/logo.png")}
-          style={[styles.reactLogo, { width: 180, height: 180 }]} // Adjusted
+          style={[styles.reactLogo, { width: 180, height: 180 }]}
         />
       </ThemedView>
 

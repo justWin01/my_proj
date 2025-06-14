@@ -15,6 +15,8 @@ export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState("");
   const router = useRouter();
 
+  
+
   const handleResetPassword = async () => {
     if (!email) {
       Alert.alert("Error", "Please enter your email.");

@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 
 db.init_app(app)
+
 app.register_blueprint(routes_user, url_prefix='/users')
 app.register_blueprint(routes_four, url_prefix='/api')
 

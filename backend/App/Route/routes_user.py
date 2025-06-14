@@ -6,6 +6,8 @@ routes_user = Blueprint('routes_user', __name__)
 
 def ascii_encode_password(pw: str) -> str:
     return pw.encode('ascii').hex()
+
+
 @routes_user.route('/login', methods=['POST'])
 def login_user():
     data = request.get_json()
