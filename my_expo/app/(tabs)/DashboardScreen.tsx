@@ -198,9 +198,7 @@
         <View style={styles.postContainer}>
           <View style={styles.postHeader}>
             <Text style={styles.postUsername}>{item.name}</Text>
-
           </View>
-
           <Text style={styles.postTitle}>{item.title}</Text>
           <Text style={styles.postContent}>{item.content}</Text>
 
